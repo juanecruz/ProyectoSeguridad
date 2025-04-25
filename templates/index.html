@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reconocimiento de Dígitos</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="canvas-container">
+            <canvas id="digitCanvas" width="280" height="280"></canvas>
+        </div>
+        
+        <div class="controls">
+            <button id="predictBtn">Predecir</button>
+            <button id="clearBtn">Limpiar</button>
+        </div>
+        
+        <div id="result">
+            <h2>Predicción: <span id="prediction">-</span></h2>
+            <p>Confianza: <span id="confidence">-</span>%</p>
+        </div>
+    </div>
+    
+    <script src="../static/app.js"></script>
+</body>
+</html>
