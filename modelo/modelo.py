@@ -27,7 +27,7 @@ X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_st
 model = Sequential([
     Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)),
     MaxPooling2D((2, 2)),
-    Conv2D(64, (3, 3), activation='relu'),
+    Conv2D(64, (3, 3), activation='relu'),  
     MaxPooling2D((2, 2)),
     Flatten(),
     Dense(128, activation='relu'),
