@@ -7,8 +7,7 @@ from tensorflow.keras.models import load_model
 
 app = Flask(__name__)
 
-# Cargar tu modelo entrenado
-model = load_model('ProyectoSeguridad/mi_modelo.h5')  # Asegúrate de guardar tu modelo primero con model.save('model.h5')
+model = load_model('ProyectoSeguridad/mi_modelo.h5') 
 
 @app.route('/')
 def home():
@@ -51,11 +50,9 @@ def attack():
         image_array = 255 - image_array
         image_array = image_array.reshape(1, 28, 28, 1).astype('float32') / 255.0
 
-        # Etiqueta dummy (no sabemos cuál es la real)
         dummy_label = model.predict(image_array)
         dummy_label = tf.convert_to_tensor(dummy_label)
 
-        # FGSM Attack
         image_tensor = tf.convert_to_tensor(image_array)
         image_tensor = tf.cast(image_tensor, tf.float32)
         with tf.GradientTape() as tape:
@@ -68,12 +65,10 @@ def attack():
         adversarial_image = image_tensor + epsilon * signed_grad
         adversarial_image = tf.clip_by_value(adversarial_image, 0, 1)
 
-        # Nueva predicción
         new_prediction = model.predict(adversarial_image)
         predicted_num = int(np.argmax(new_prediction))
         confidence = float(np.max(new_prediction))
 
-        # Convertir la imagen atacada a base64 para mostrarla
         adv_np = adversarial_image.numpy().reshape(28, 28) * 255
         adv_img_pil = Image.fromarray(adv_np.astype(np.uint8), mode='L')
         buffered = io.BytesIO()
@@ -103,7 +98,6 @@ def defend():
         image_array = np.array(image)
         image_array = 255 - image_array
 
-        # Defensa: aplicar blur
         image_array = cv2.GaussianBlur(image_array, (3, 3), 0)
 
         image_array = image_array.reshape(1, 28, 28, 1).astype('float32') / 255.0
@@ -112,7 +106,6 @@ def defend():
         predicted_num = int(np.argmax(prediction))
         confidence = float(np.max(prediction))
 
-        # Convertir imagen suavizada a base64 para canvas
         img_uint8 = (image_array.reshape(28, 28) * 255).astype(np.uint8)
         cleaned_pil = Image.fromarray(img_uint8, mode='L')
         buffered = io.BytesIO()
