@@ -7,8 +7,7 @@ from tensorflow.keras.models import load_model
 
 app = Flask(__name__)
 
-# Cargar tu modelo entrenado
-model = load_model('proyecto/mi_modelo.h5')  # Asegúrate de guardar tu modelo primero con model.save('model.h5')
+model = load_model('proyecto/mi_modelo.h5') 
 
 @app.route('/')
 def home():
