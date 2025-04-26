@@ -6,25 +6,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const predictionElement = document.getElementById('prediction');
     const confidenceElement = document.getElementById('confidence');
     
-    // Configuración inicial
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 15;
     ctx.lineCap = 'round';
-    
-    // Variables para dibujo
+  
     let isDrawing = false;
     let lastX = 0;
     let lastY = 0;
     
-    // Eventos de dibujo
     canvas.addEventListener('mousedown', startDrawing);
     canvas.addEventListener('mousemove', draw);
     canvas.addEventListener('mouseup', stopDrawing);
     canvas.addEventListener('mouseout', stopDrawing);
     
-    // Soporte para pantallas táctiles
     canvas.addEventListener('touchstart', handleTouch);
     canvas.addEventListener('touchmove', handleTouch);
     canvas.addEventListener('touchend', stopDrawing);
@@ -61,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
         isDrawing = false;
     }
     
-    // Limpiar canvas
     clearBtn.addEventListener('click', function() {
         ctx.fillStyle = 'white';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -69,9 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
         confidenceElement.textContent = '-';
     });
     
-    // Predecir dígito
     predictBtn.addEventListener('click', function() {
-        // Convertir canvas a imagen (en tamaño 28x28 para el modelo)
+    
         const tempCanvas = document.createElement('canvas');
         tempCanvas.width = 28;
         tempCanvas.height = 28;
