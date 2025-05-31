@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Reconocimiento de Dígitos</title>
-    <link rel="stylesheet" href="../static/styles.css">
+    <title>Model Extraction Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <div class="canvas-container">
-            <canvas id="digitCanvas" width="280" height="280"></canvas>
-        </div>
-        
-        <div class="controls">
-            <button id="predictBtn">Predecir</button>
-            <button id="clearBtn">Limpiar</button>
-        </div>
-        
-        <div id="result">
-            <h2>Predicción: <span id="prediction">-</span></h2>
-            <p>Confianza: <span id="confidence">-</span>%</p>
-        </div>
-    </div>
-    
-    <script src="../static/app.js"></script>
+    <h1>Consulta al modelo víctima</h1>
+    <form action="/predict" method="post">
+        {% for i in range(5) %}
+        {{ feature_names[i] }}: <input type="text" name="feature{{i}}"><br>
+        {% endfor %}
+        <input type="submit" value="Consultar modelo">
+    </form>
+
+    <h2>Atacar</h2>
+    <form action="/attack" method="post">
+        <label><input type="checkbox" name="defense" {% if defense %}checked{% endif %}> Encender defensa</label><br><br>
+        <input type="submit" value="Ejecutar ataque">
+    </form>
+
+    <h2>Métricas del modelo víctima</h2>
+    <p><strong>MSE:</strong> {{ victim_mse }}</p>
+    <p><strong>R²:</strong> {{ victim_r2 }}</p>
+
+    {% if prediction is not none %}
+    <h3>Predicción del modelo víctima: {{ prediction }}</h3>
+    {% endif %}
+
+    {% if stats is not none %}
+    <h3>Ataque completado</h3>
+    <p>Entrenado con {{ stats.n }} ejemplos.</p>
+    <p>MSE del modelo robado: {{ stats.mse }}</p>
+    <p>R² del modelo robado: {{ stats.r2 }}</p>
+    {% endif %}
+
+    {% if blocked %}
+    <div class="alert">Este modelo es mío (｡♥‿♥｡)</div>
+    {% endif %}
 </body>
 </html>
