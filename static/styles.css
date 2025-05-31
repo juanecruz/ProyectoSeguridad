@@ -1,76 +1,41 @@
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f5f5f5;
+    margin: 40px;
+    background-color: #f4f4f4;
 }
-
-.container {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-h1 {
+h1, h2 {
     color: #333;
-    margin-bottom: 1.5rem;
 }
-
-.canvas-container {
-    margin: 1rem auto;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    overflow: hidden;
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
 }
-
-canvas {
-    background-color: white;
-    cursor: crosshair;
-    display: block;
+input[type='text'] {
+    width: 300px;
+    margin-bottom: 10px;
+    padding: 5px;
 }
-
-.controls {
-    margin: 1.5rem 0;
-}
-
-button {
-    padding: 0.5rem 1rem;
-    margin: 0 0.5rem;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: #4CAF50;
+input[type='submit'] {
+    padding: 8px 16px;
+    background-color: #007BFF;
     color: white;
     border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    border-radius: 4px;
 }
-
-button:hover {
-    background-color: #45a049;
+input[type='checkbox'] {
+    margin-left: 10px;
 }
-
-#clearBtn {
-    background-color: #f44336;
-}
-
-#clearBtn:hover {
-    background-color: #d32f2f;
-}
-
-#result {
-    margin-top: 1.5rem;
-    padding: 1rem;
-    background-color: #f0f8ff;
+p {
+    background: white;
+    padding: 10px;
     border-radius: 5px;
 }
-
-#prediction {
-    color: #2196F3;
-    font-size: 1.5rem;
+.alert {
+    background-color: #ffc0cb;
+    padding: 15px;
+    border-radius: 10px;
     font-weight: bold;
 }
